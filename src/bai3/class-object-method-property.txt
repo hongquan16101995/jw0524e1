@@ -1,0 +1,46 @@
+Trong Java, sử dụng triết ký lập trình hướng đối tượng OOP
+OOP - Object Oriented Programming: lập trình hướng đối tượng
+=> quy tất cả về thành class - object, cho các thành phần này tương tác với nhau
+Class: khuôn mẫu để sản sinh ra các Object giống nhau về tính chất, khác nhau về số liệu chi tiết 
+Object: bản thể đặc trưng cho 1 bộ chỉ số riêng biệt của các tính chất trong Class 
+    - Property: thuộc tính, mô tả cho các đặc tính/thuộc tính của đối tượng/lớp
+    - Method: phương thức, mô tả cho hành vi, khả năng của đối tượng/lớp
+Class thường có: mô tả lại sự vật/hiện tượng
+    - thuộc tính
+    - constructor
+        + là hàm khởi tạo của lớp, sử dụng để sinh ra các đối tượng từ lớp tương ứng
+        + sử dụng khi gọi bằng từ khóa "new"
+        + constructor sẽ có nhiều dạng tham số
+            + không tham số
+            + đầy đủ tham số
+            + tham số tùy biến
+    - getter/setter
+    - toString
+
+Vd: Class Person (con người)
+    - thuộc tính nên có:
+        + name (tên)
+        + age (tuổi)
+        + gender (giới tính)
+        + address (địa chỉ)
+    - constructor
+    - getter/setter
+        + getName/setName: lấy/thay đổi giá trị của thuộc tính tên 
+        + getAge/setAge: lấy/thay đổi giá trị của thuộc tính tuổi
+        +...
+    - toString 
+        + trả về 1 đoạn text chứa thông số chi tiết của 1 Object 
+
+Phương thức trong Java:
+- Cấu trúc:
+    <access> <kiểu dữ liệu trả về> <tên> (<tham số nếu có>) {
+        <thân phương thức>
+    }
+        + nếu KDL trả về là void => không có từ khóa return trong phương thức
+        + nếu KDL trả về là các KDL bt => phải có từ khóa return + giá trị tương ứng
+- 4 kiểu phương thức:
+        void + không tham số
+        void + có tham số
+        return + không tham số
+        return + có tham số
+    
