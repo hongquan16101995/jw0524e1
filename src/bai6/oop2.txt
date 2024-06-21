@@ -1,0 +1,56 @@
+- Tính kế thừa: cho phép lớp con, kế thừa thuộc tính và phương thức được phép của lớp cha
+    - Lớp con / lớp cha
+    - Subclass / superclass
+    - Kế thừa được triển khai thông qua từ khóa Extends
+    - Trong java, không hỗ trợ đa kế thừa
+        + Đa kế thừa: cho phép 1 lớp con có thể kế thừa từ nhiều lớp cha
+        + Khác với việc 1 lớp cha có tồn tại nhiều lớp con
+    - Lưu ý:
+        + Không kế thừa các thành phần có dạng private
+        + Không kế thừa contructor
+        + Khi lớp con muốn gọi 1 phương thức của lớp cha, có thể dùng từ khóa super
+        + Lớp con khi kế thừa có thể ghi đè (overriding) phương thức của lớp 
+        + Lớp con sẽ mở rộng hơn lớp cha, chứa các thành phần mà lớp cha không có 
+
+* Overloading: kỹ thuật nạp chồng phương thức, cho phép tạo ra các phương thức có tên giống hệt nhau,
+nhưng khác nhau về tham số
+    - Đặc trưng nhất của Overloading chính là contructor
+    - 1 số dạng nạp chồng:
+        + khác về số lượng tham số 
+        + khác về kiểu dữ liệu tham số
+        + khác về vị trí của các tham số
+
+- Tính đa hình: Polymorphism
+
+- Tính trừu tượng: Abstraction
+    - Nói đến những phương thức hoặc class chung, không cụ thể, không chi tiết
+    - Method abstract: phương thức trừu tượng, không có phần thân và ngoặc nhọn, 
+    chỉ bao gồm tên, kiểu dữ liệu trả về và tham số nếu có 
+        + Phương thức trừu tượng chỉ tồn tại trong class abstract hoặc interface, không tồn tại trong class bt
+    - Class abstract: lớp trừu tượng, tượng tự như lớp bt nhưng có thể chứa thêm phương thức trừa tượng
+        + Lớp abstract vẫn có thể kế thừa 1 lớp bt 
+        + Lớp bt kế thừa lớp abstract thì sẽ cần triển khai TẤT CẢ các phương thức trừu tượng có trong lớp abstract
+    - Interface: lớp thuần trừu tượng, chỉ chứa các phương thức trừu tượng, nếu có thuộc tính thì sẽ ở dạng final static
+        + Lớp abstract hoặc lớp bt có thể triển khai interface để ghi đè các phương thức trừu tượng trong đó
+        + Phương thức abstract mặc định là public abstract => chỉ nhìn thấy KLD trả về + tên + tham số nếu có 
+
+* Lưu ý: Class abstract và interface không tạo đối tượng 
+    - Interface
+    - Class abstract
+    - Class bt 
+
+    => Class bt extends class bt 
+    => Class bt extends class abstract => triển khai 100% các phương thức abstract 
+    => Class abstract extends class bt 
+    => Class abstract extends class abstract => triển khai hoặc không triển khai phương thức abstract tùy thuộc vào ltv
+        VD: Class abstract A có 2 phương thức trừu tượng, 3 phương thức thường
+            Class abstract B có 1 phương thức trừu tượng
+            => Class abstract B extends class abstract A 
+            => Class abstract B: 3 pt trừu tượng, 3 pt bình thường 
+    => Interface extends interface
+    => Class abstract implements interface => triển khai pt trừu tượng hay không tùy ltv 
+    => Class bt implements interface => triển khai 100% các pt abstract
+
+    - Từ khóa abstract không bao giờ đi cùng từ khóa private, final 
+
+- Tính bao gói: Encapsulation
