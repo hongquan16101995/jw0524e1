@@ -1,7 +1,8 @@
-package baitap_hocsinh;
+package baitap_hocsinh.service;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import baitap_hocsinh.model.*;
 
 public class ClassroomManage {
     // tạo data Classroom

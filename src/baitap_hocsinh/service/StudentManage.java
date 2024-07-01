@@ -1,24 +1,36 @@
-package baitap_hocsinh;
+package baitap_hocsinh.service;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import baitap_hocsinh.model.*;
 
 public class StudentManage {
-    public ArrayList<Student> students = new ArrayList<>();
+    public ArrayList<Student> students = readFile();
     private ClassroomManage classroomManage;
 
     public StudentManage(ClassroomManage classroomManage) {
         this.classroomManage = classroomManage;
+        checkIndex();
+    }
+
+    private void checkIndex() {
+        if (this.students != null) { 
+            if (!this.students.isEmpty()) {
+                Student.INDEX = this.students.get(this.students.size() - 1).getId();
+            }
+        } else {
+            this.students = new ArrayList<>();
+        }
     }
 
     public void displayAllStudent() {
         for(Student student : this.students) {
             System.out.println(student);
         }
-
-        // for(int i = 0; i < students.size(); i++) {
-        //     System.out.println(students.get(i));
-        // }
     }
 
     public void createNewStudent(Scanner scanner) {
@@ -45,6 +57,7 @@ public class StudentManage {
         }
         Student student = new Student(name, age, gender, address, pointAvg, classroom);
         this.students.add(student);
+        writeFile();
     }
 
     private Classroom getClassroom(Scanner scanner) {
@@ -114,5 +127,25 @@ public class StudentManage {
             count++;
         } while(count < 3);
         return -1;
+    }
+
+    private void writeFile() {
+        try {
+            ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream("students"));
+            obj.writeObject(this.students);
+            obj.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private ArrayList<Student> readFile() {
+        try {
+            ObjectInputStream obj = new ObjectInputStream(new FileInputStream("students"));
+            return (ArrayList<Student>) obj.readObject();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

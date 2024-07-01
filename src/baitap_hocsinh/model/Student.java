@@ -1,9 +1,10 @@
-package baitap_hocsinh;
+package baitap_hocsinh.model;
 
 import java.io.Serializable;
 
 public class Student implements Serializable{
-    private static int INDEX = 0;
+    private final long serialVersionUID = 123456789;
+    public static int INDEX = 0;
     private int id;
     private String name;
     private int age;

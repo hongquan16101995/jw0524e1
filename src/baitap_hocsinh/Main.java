@@ -1,11 +1,7 @@
 package baitap_hocsinh;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
+import baitap_hocsinh.service.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,15 +10,38 @@ public class Main {
         StudentManage studentManage = new StudentManage(classroomManage);
 
         // menu
+        menu(scanner, studentManage, classroomManage);
+    }
+
+    private static void menu(Scanner scanner, StudentManage studentManage, ClassroomManage classroomManage) {
         do {
             try {
                 System.out.println("MENU");
+                System.out.println("1. Menu student");
+                System.out.println("2. Menu classroom");
+                System.out.println("Enter your choice: ");
+                int choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        menuStudent(scanner, studentManage);
+                        break;
+                    case 2:
+                        menuClassroom(scanner, classroomManage);
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Format error, please again!");
+            }
+        } while(true);
+    }
+
+    private static void menuStudent(Scanner scanner, StudentManage studentManage) {
+        do {
+            try {
+                System.out.println("MENU STUDENT");
                 System.out.println("1. Create new Student");
                 System.out.println("4. Display all student");
-                System.out.println("5. Create new Classroom");
-                System.out.println("6. Display all classroom");
-                System.out.println("7. Ghi danh sách student ra file");
-                System.out.println("8. Đọc danh sách student từ file");
+                System.out.println("0. Exit");
                 System.out.println("Enter your choice: ");
                 int choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
@@ -32,44 +51,39 @@ public class Main {
                     case 4:
                         studentManage.displayAllStudent();
                         break;
-                    case 5:
-                        classroomManage.createNewClassroom(scanner);
-                        break;
-                    case 6:
-                        classroomManage.displayAllClassroom();
-                        break;
-                    case 7:
-                        writeFile(studentManage.students);
-                        break;
-                    case 8:
-                        studentManage.students = readFile();
-                        break;
-                    default:
-                        break;
+                }
+                if (choice == 0) {
+                    break;
                 }
             } catch (Exception e) {
-                System.out.println("Format error, please enter again!");
+                System.out.println("Format error, please again!");
             }
         } while(true);
     }
 
-    private static void writeFile(ArrayList<Student> students) {
-        try {
-            ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream("students"));
-            obj.writeObject(students);
-            obj.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private static ArrayList<Student> readFile() {
-        try {
-            ObjectInputStream obj = new ObjectInputStream(new FileInputStream("students"));
-            return (ArrayList<Student>) obj.readObject();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+    private static void menuClassroom(Scanner scanner, ClassroomManage classroomManage) {
+        do {
+            try {
+                System.out.println("MENU CLASSROOM");
+                System.out.println("1. Create new Classroom");
+                System.out.println("2. Display all classroom");
+                System.out.println("0. Exit");
+                System.out.println("Enter your choice: ");
+                int choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        classroomManage.createNewClassroom(scanner);
+                        break;
+                    case 2:
+                        classroomManage.displayAllClassroom();
+                        break;
+                }
+                if (choice == 0) {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Format error, please again!");
+            }
+        } while(true);
     }
 }

@@ -1,8 +1,9 @@
-package baitap_hocsinh;
+package baitap_hocsinh.model;
 
 import java.io.Serializable;
 
 public class Classroom implements Serializable{
+    private final long serialVersionUID = 123456789;
     private static int INDEX = 0;
     private int id;
     private String name;
