@@ -50,6 +50,20 @@ public class StudentManage {
         String address = scanner.nextLine();
         System.out.println("Enter pointAvg: ");
         double pointAvg = Double.parseDouble(scanner.nextLine());
+        // xử lý classroom
+        boolean check = classroomManage.checkClassrooms();
+        if (check) {
+            System.out.println("List classroom is empty!");
+            System.out.println("1. Create new classroom");
+            System.out.println("0. Exit");
+            System.out.println("Enter your choice: ");
+            int choice = Integer.parseInt(scanner.nextLine());
+            if (choice == 0) {
+                return;
+            } else if (choice == 1) {
+                classroomManage.createNewClassroom(scanner);
+            }
+        }
         Classroom classroom = getClassroom(scanner);
         if (classroom == null) {
             System.out.println("Error input, please choice again!");
@@ -58,6 +72,30 @@ public class StudentManage {
         Student student = new Student(name, age, gender, address, pointAvg, classroom);
         this.students.add(student);
         writeFile();
+    }
+
+    public void changeClassroom(Classroom classroom) {
+        for (Student student : this.students) {
+            if (student.getClassroom().getId() == classroom.getId()) {
+                student.setClassroom(classroom);
+            }
+        }
+        writeFile();
+    }
+
+    public void searchByClassroom(Scanner scanner) {
+        System.out.println("Enter classroom id you want search: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        Classroom classroom = classroomManage.getByID(id);
+        if (classroom == null) {
+            System.out.println("Not exist classroom have id!");
+            return;
+        }
+        for (Student student : this.students) {
+            if (student.getClassroom().getId() == id) {
+                System.out.println(student);
+            }
+        }
     }
 
     private Classroom getClassroom(Scanner scanner) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Classroom implements Serializable{
     private final long serialVersionUID = 123456789;
-    private static int INDEX = 0;
+    public static int INDEX = 0;
     private int id;
     private String name;
     
@@ -15,6 +15,12 @@ public class Classroom implements Serializable{
         this.id = ++INDEX;
         this.name = name;
     }
+
+    public Classroom(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
 
     public int getId() {
         return id;
